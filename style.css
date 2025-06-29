@@ -609,7 +609,7 @@ form textarea::focus{
 /* Mobile */
 @media (max-width: 600px) {
     html {
-        font-size: 45%;
+        font-size: 40%;
     }
 
     .header {
