@@ -195,17 +195,17 @@
     <section class="contact" id="contact">
         <h2 class="heading">Me <span>Contacter</span></h2>
 
-        <form action="traitement.php" method="POST" id="contact-form">
+        <form id="contact-form">
             <div class="input-group">
                 <div class="input-box">
-                    <input type="text" name="nom" placeholder="Votre nom" required>
-                    <input type="email" name="email" placeholder="Votre email" required>
+                    <input type="text" id="nom" placeholder="Votre nom" required>
+                    <input type="email" id="email" placeholder="Votre email" required>
                 </div>
             </div>
 
             <div class="input-group-2">
-                <textarea name="message" cols="20" rows="10" placeholder="Votre message" required></textarea>
-                <input type="submit" name="message" value="Envoyer" class="btn">
+                <textarea id="message" cols="20" rows="10" placeholder="Votre message" required></textarea>
+                <input type="submit" value="Envoyer" class="btn">
             </div>
         </form>
 
@@ -243,7 +243,7 @@
             <p class="copyright">©Magnifica LODOUHOUE| Tous droits réservés</p>
         </footer>
 
-        <script src="script.js"></script>
+        <script type="module" src="script.js"></script>
     </body>
 
 </html>

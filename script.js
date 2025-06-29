@@ -64,22 +64,54 @@ window.onload = function () {
   }
 
   type();
-} else{
+  } else{
   console.error("L'élément text-animation est introuvable dans le dom");
   }
-};
 
-// Smooth scroll vers les ancres
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
+  // Smooth scroll vers les ancres
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
 
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
   });
-});
+};
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+// Remplace par tes vraies infos Supabase :
+const supabaseUrl = 'https://ibyjbrkdsveloczgistm.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlieWpicmtkc3ZlbG9jemdpc3RtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTExNTM3MTksImV4cCI6MjA2NjcyOTcxOX0.2ZZHj9heUDgFIRXuDpSaeX7LNRpTZhx-9hJKhO5B7kU'
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+// Écoute l’envoi du formulaire
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form')
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      const nom = document.getElementById('nom').value
+      const email = document.getElementById('email').value
+      const message = document.getElementById('message').value
+
+      const { data, error } = await supabase
+        .from('contacts')
+        .insert([{ nom, email, message }])
+
+      if (error) {
+        alert('Erreur : ' + error.message)
+      } else {
+        alert('Message envoyé avec succès !')
+        form.reset()
+      }
+    })
+  }
+})
